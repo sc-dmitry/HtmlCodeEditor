@@ -9,10 +9,15 @@
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
         }
         .container {
+            width: 90%;
+            height: 90%;
             display: flex;
-            height: 100%;
         }
         .column {
             flex: 1;
@@ -26,9 +31,11 @@
         #codeEditField {
             height: calc(100% - 40px); /* Subtract the height of the toolbar */
             width: 100%;
-            border: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             padding: 10px;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
         #preview {
             border: 1px solid #ccc;
@@ -44,7 +51,49 @@
             <div id="toolbar">
                 <button onclick="runCode()">Run</button>
             </div>
-            <textarea id="codeEditField" placeholder="Write code here"></textarea>
+            <textarea id="codeEditField" placeholder="<html>\n<body>\n\n</body>\n</html>">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #inputField, #outputField {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #outputField {
+            border: 1px solid #ccc;
+            min-height: 100px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="inputField" placeholder="Enter text...">
+        <button onclick="showText()">Show</button>
+        <div id="outputField"></div>
+    </div>
+    <script>
+        function showText() {
+            var inputText = document.getElementById("inputField").value;
+            document.getElementById("outputField").innerText = inputText;
+        }
+    </script>
+</body>
+</html>
+            </textarea>
         </div>
         <!-- Second column -->
         <div class="column">
@@ -53,19 +102,6 @@
     </div>
 
     <script>
-        document.getElementById("codeEditField").value = 
-        `
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Моя первая веб-страница</title>
-            </head>
-            <body>
-                <h1>Привет, мир!</h1>
-            </body>
-        </html>
-        `
-        
         function runCode() {
             var code = document.getElementById("codeEditField").value;
             var previewFrame = document.getElementById("preview");
