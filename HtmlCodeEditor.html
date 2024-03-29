@@ -18,9 +18,13 @@
         }
         .container {
             display: flex;
-            height: 95%;
-            width: 95%; 
-            margin: 0 auto;
+            /* height: 95%;
+            width: 95%;  */
+
+            height: 95vh;
+    width: 95vw;
+
+            /* margin: 0 auto; */
             flex-grow: 1;
 
             border: solid blue;
@@ -56,7 +60,51 @@
             <div id="toolbar">
                 <button onclick="runCode()">Run</button>
             </div>
-            <textarea id="codeEditField" placeholder="Write code here"></textarea>
+            <textarea id="codeEditField" placeholder="Write code here">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #inputField, #outputField {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #outputField {
+            border: 1px solid #ccc;
+            min-height: 100px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="inputField" placeholder="Enter text...">
+        <button onclick="showText()">Show</button>
+        <div id="outputField"></div>
+    </div>
+    <script>
+        var inputField = document.getElementById("inputField");
+        inputField.value = "Type text here...";
+        function showText() {
+            document.getElementById("outputField").innerText = inputField.value;
+        }
+        </script>
+</body>
+</html>
+
+            </textarea>
         </div>
         <!-- Second column -->
         <div class="column">
@@ -65,16 +113,6 @@
     </div>
 
     <script>
-        document.getElementById("codeEditField").value = 
-`<!DOCTYPE html>
-<html>
-    <head>
-        <title>Моя первая веб-страница</title>
-    </head>
-    <body>
-        <h1>Привет, мир!</h1>
-    </body>
-</html>`
         
         function runCode() {
             var code = document.getElementById("codeEditField").value;
@@ -84,6 +122,8 @@
             preview.write(code);
             preview.close();
         }
+        //Execute first time after page loaded
+        runCode();
     </script>
 </body>
 </html>
